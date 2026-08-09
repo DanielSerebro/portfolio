@@ -727,6 +727,39 @@ footer{
 .reveal.pending{ opacity:0; transform:translateY(18px); }
 .reveal.in{ opacity:1; transform:none; }
 
+/* ========================================================
+   PRINT — keep the layout intact when saved/printed to PDF
+======================================================== */
+@media print{
+  *{
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+    color-adjust:exact;
+  }
+  /* the graph-paper texture is position:fixed, which prints unreliably
+     across browsers (tiles oddly or only appears on page 1) — drop it */
+  body::before{ display:none; }
+  /* fixed corner registration marks would otherwise repeat or misplace
+     on every printed page */
+  .corner{ display:none; }
+  /* sticky nav has no purpose on a printed/paged document */
+  .topnav{ position:static; }
+  .navmeta{ display:block; }
+  /* buttons are meaningless on paper */
+  .hero-ctas{ display:none; }
+  a{ text-decoration:none; }
+  /* avoid a case file, timeline entry or spec column being sliced
+     across a page break */
+  .case, .tl-item, .spec-col, .toolcard, .callout, .idcard, .case-media figure{
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+  .sheet{ border:none; }
+  section{ break-inside:auto; }
+  footer{ break-inside:avoid; }
+  @page{ margin:14mm; }
+}
+
 </style>
 </head>
 <body>
@@ -760,7 +793,7 @@ footer{
         <div class="hero-kicker"><span class="sq"></span>DRAWING NO. DS&#8209;2026 &nbsp;—&nbsp; PORTFOLIO / CAREER RECORD</div>
         <h1>Daniel<br>Sere<span class="last">bro</span></h1>
         <div class="hero-role">Technical Lead <span>&mdash; Unity Developer</span></div>
-        <p class="hero-tagline">A decade-plus building, architecting and shipping cross-platform games — from Australian Defence Force simulators to blockchain trading card games to a horror roguelite pool game shipping simultaneously across seven platforms.</p>
+        <p class="hero-tagline">A decade-plus building, architecting and shipping cross-platform games — from Australian Defence Force simulators to digital trading card games to a horror roguelite pool game shipping simultaneously across seven platforms.</p>
         <div class="hero-ctas">
           <a class="btn primary" href="#work">View Case Files</a>
           <a class="btn" href="mailto:daniel.serebro.games@gmail.com">Get In Touch</a>
@@ -963,7 +996,7 @@ footer{
     <div class="wrap">
       <div class="eyebrow">Case Files<span class="code">FIG. 03 — SELECTED WORK</span></div>
       <h2 class="sec-title">Six projects, one recurring habit: build the tool before the feature.</h2>
-      <p class="sec-lede">Each entry below is a shipped or in-flight project with its own scope, constraints and outcome — from a two-person indie horror comedy to a Defence Force-grade simulator.</p>
+      <p class="sec-lede">Each entry below is a shipped or in-flight project with its own scope, constraints and outcome — from a horror roguelite pool-like to a Defence Force-grade simulator.</p>
 
       <!-- SPOOKER -->
       <div class="case reveal">
